@@ -1,0 +1,519 @@
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title></title>
+<!-- Prism.js для подсветки синтаксиса -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+<style type="text/css">body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fafafa;
+    color: #333;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #27AAE1;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-bottom: 2rem;
+}
+header img {
+    height: 40px;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+h2, h3 {
+    color: #0057b7;
+}
+pre {
+    position: relative;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+}
+pre button.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #27AAE1;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+code {
+    font-family: 'Fira Code', monospace;
+}
+section {
+    background: white;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+}
+blockquote {
+    border-left: 4px solid #0057b7;
+    margin: 1rem 0;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+}
+nav {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #0057b7;
+}
+</style>
+<header><img alt="Логотип" src="https://demofiles.rnova.org/35236a263e7eab278fe8f1c9444cc1b2.png" />
+    <h1>📘 Гайдбук по шаблонам и CSS</h1>
+</header>
+
+<nav><a href="#intro">Введение</a> <a href="#global">Стандартный CSS</a> <a href="#components">Компоненты</a> <a href="#special">Спецэлементы</a> <a href="#print">Печать колонтитулов</a> <a href="#protocol">CSS протокола</a> <a href="#tips">Советы</a></nav>
+
+<section id="intro">
+    <h2>Введение</h2>
+
+    <p>Этот гайдбук содержит готовые шаблоны и стили для верстки наиболее часто встречающихся документов. Просто копируйте и вставляйте!</p>
+</section>
+
+<section id="global">
+    <h2>Стандартный CSS</h2>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">* { /*применяется ко всем элементам, для которых стили не определены*/
+     margin: 0;
+     padding: 0;
+     font-family: Times;
+ }
+h1 {/*заголовок*/
+     font-weight: bold;
+     font-size: 11pt;
+     line-height: 1;
+     margin: 0;
+     padding: 0;
+ }
+p {/*абзац*/
+     font-size: 11pt;
+     line-height: 1;
+     margin: 0;
+     padding: 0;
+ }
+div {/*контейнер*/
+     font-size: 12px;
+     line-height: 14px;
+ }
+</code></pre>
+</section>
+
+<section id="components">
+    <h2>Компоненты</h2>
+
+    <h3>Красная строка</h3>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">.indent {
+     text-indent: 30px;
+ }
+</code></pre>
+
+    <h3>Пример текста с красной строкой</h3>
+    <img src="https://files.rnova.org/bd5be129797f0ec006911f53c00a426b.png" style="width: 100%;" />
+    <p>&nbsp;</p>
+
+    <h3>Таблицы</h3>
+
+    <p>Позволяет гибко настраивать шрифт текста таблиц, отступы внутри таблицы и границы</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">table {/*таблица*/
+     width: 100%;
+     border: none;
+ }
+td {/*ячейка в таблице*/
+     border: none;
+     padding: 3px;
+ }
+.bordered {/* границы таблицы */
+     border: 1px solid black;
+     padding: 10px;
+ }
+.table_without_borders { /* таблицы без границ */
+     width: 100%;
+     border: none;
+ }
+.table_without_borders td {/* таблицы без границ */
+     border: none;
+     padding: 5px;
+     font-size: 12px;
+     line-height: 14px;
+ }
+.table_with_borders {/* таблицы с границами */
+     width: 100%;
+     border: 1px solid black;
+     font-size: 12px;
+     line-height: 14px;
+ }
+.table_with_borders td {/* таблицы с границами */
+     padding: 3px;
+     border: 1px solid black;
+     font-size: 9.5pt;
+     line-height: 1;
+ }
+</code></pre>
+
+    <p><img src="https://files.rnova.org/3213face6c8b00bd11951bd206da8b9a.png" style="width: 100%;" /></p>
+
+    <h3>Списки</h3>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">ul {/*маркированный список*/
+     font-size: 11pt;
+     line-height: 1;
+     margin: 0px 60px;
+     padding: 0;
+ }
+ul li {/* элемент списка */
+     margin-bottom: 0px;
+ }
+ol {/*нумерованный список*/
+     font-size: 12px;
+     line-height: 14px;
+     margin: 10px 15px;
+     padding: 0;
+ }
+ol li {/* элемент списка */
+     margin-bottom: 5px;
+     padding: 0;
+ }
+</code></pre>
+
+    <h3>Колонки</h3>
+
+    <p>(иногда текст удобнее разбить именно на колонки, без использования таблицы)</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">.columns {
+  column-count: 3; /* Задаем количество колонок */
+  column-gap: 20px; /* Расстояние между колонками */
+  column-rule: 1px solid black; /* Разделительная линия между колонками */
+}
+
+</code></pre>
+
+    <p><img src="https://files.rnova.org/1191a4ac2ab2ace48cee26b1979b01e3.png" style="width: 100%;" /></p>
+
+    <h3>Две страницы на одной</h3>
+
+    <p>Когда необходимо расположить на одной страницы две, можно использовать контейнеры</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">.clear /* обтекание */
+ {
+     clear: both;
+ }
+.left_running_title
+ {
+     width: 48%;
+     float: left;
+ }
+.right_running_title
+ {
+     width: 48%;
+     float: right;
+ }
+</code></pre>
+
+    <p><img src="https://files.rnova.org/049b81db8e71cba59f4490082c241afb.png" style="width: 100%;" /></p>
+
+    <h3>Таблицы автозаполнения (параметры)</h3>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">.auto-table,
+.auto-table td,
+.auto-table th
+ {
+ font-size: 12pt !important;
+}
+</code></pre>
+
+    <h3>Выпадающий список</h3>
+
+    <p>Кастомизация выпадающего списка, можно настроить границы или убрать их, ширину списка, убрать стандартную стрелку</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">select {
+         border-style: none; /* границы списка */
+         border-width: 0; /* толщина границ */
+         width: 10%; /* ширина списка /*
+         -moz- appearance: none;
+         -webkit- appearance: none;
+         appearance: none; /* стрелка */
+   }
+
+</code></pre>
+
+    <h2>Итог</h2>
+
+    <p>В итоге получаем вот такой готовый CSS, который подойдет для верстки большинства документов.</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">* {
+     margin: 0;
+     padding: 0;
+     font-family: Times;
+ }
+h1 {
+     font-weight: bold;
+     font-size: 11pt;
+     line-height: 1.15;
+     margin: 0;
+     padding: 0;
+ }
+p {
+     font-size: 11pt;
+     line-height: 1.15;
+     margin: 0;
+     padding: 0;
+ }
+div {
+     font-size: 12pе;
+     line-height: 1.15;
+ }
+table {
+     width: 100%;
+     border: none;
+ }
+td {
+     border: none;
+     padding: 3px;
+ }
+.clear
+ {
+     clear: both;
+ }
+.text-center {
+     text-align: center;
+ }
+.text-right {
+     text-align: right;
+ }
+.text-left {
+     text-align: left;
+ }
+.left_running_title
+ {
+     width: 48%;
+     float: left;
+ }
+.right_running_title
+ {
+     width: 48%;
+     float: right;
+ }
+.underlined
+ {
+     border-bottom: 1px solid black;
+ }
+.non-underlined
+ {
+     display: inline-block;
+     margin-bottom: -1px;
+     border-bottom: 1px solid white;
+ }
+.helper {
+     font-size: 10pе;
+     line-height: 1.15;
+     margin-top: 2px;
+ }
+.margin_top_5
+ {
+     margin-top: 5px;
+ }
+.bordered {
+     border: 1px solid black;
+     padding: 10px;
+ }
+.table_without_borders {
+     width: 100%;
+     border: none;
+ }
+.table_without_borders td {
+     border: none;
+     padding: 5px;
+     font-size: 12pе;
+     line-height: 1.15;
+ }
+.table_with_borders {
+     width: 100%;
+     border: 1px solid black;
+     font-size: 12pе;
+     line-height: 1.15;
+ }
+.table_with_borders td {
+     padding: 3px;
+     border: 1px solid black;
+     font-size: 9.5pt;
+     line-height: 1.15;
+ }
+ul {
+     font-size: 11pt;
+     line-height: 1.15;
+     margin: 0px 60px;
+     padding: 0;
+ }
+ul li {
+     margin-bottom: 0px;
+ }
+ol {
+     font-size: 12pе;
+     line-height: 1.15;
+     margin: 10px 15px;
+     padding: 0;
+ }
+ol li {
+     margin-bottom: 5px;
+     padding: 0;
+ }
+
+.indent {
+     text-indent: 30px;
+ }
+
+</code></pre>
+</section>
+
+<section id="special">
+    <h2>Специальные элементы</h2>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">@page {
+   size: A4 portrait;
+}
+</code></pre>
+
+    <p>Задает странице размер и ориентацию</p>
+</section>
+
+<section id="print">
+    <h2>Для печати колонтитулов</h2>
+
+    <p>Появятся только при выводе на печать.<br />
+        <span style="color:#FF0000;">! Стиль нужно копировать вместе с комментариями</span></p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">@page{/* top -верх, bottom - низ: расположение колонтитулов на странице */
+      @top-right {
+        content:  counter(page) !important; /* счетчик вверху страницы*/
+      }
+      @bottom-left {
+         content: &quot;____________________Исполнитель&quot; !important;
+         color: gray;
+      }
+      @bottom-right {
+         content: &quot;______________________Пациент &quot; !important;
+         color: gray;
+      }
+}
+</code></pre>
+</section>
+
+<section id="protocol">
+    <h2>Для протоколов</h2>
+
+    <p>Иногда требуется катомизировать протоколы. Это самые используемые элементы, также можно добавлять стили для шаблонов</p>
+
+    <pre>
+<button class="copy-btn">Копировать</button><code class="language-css">.med-doc-print-wrap * {/*весь документ, приоритет выше*/
+     background: none !important;
+     color: black !important;
+     font-family: Arial !important;;
+     font-size: 10pt !important;
+     line-height: 12pt !important;
+     text-align: justify;
+ }
+
+.med-doc-print-wrap h1 {/*название документа*/
+    font-weight: bold;
+    margin: 0px !important;
+    font-family: Arial !important;
+    font-size: 10pt !important;
+    line-height: 12pt !important;
+    padding: 0px !important;
+}
+
+.med-doc-print-wrap h3 { /*заголовок раздела*/
+    margin: 0px !important;
+    font-family: Arial !important;
+    font-size: 10pt !important;
+    line-height: 12pt !important;
+    padding: 0px !important;
+}
+ .med-doc-print-wrap div { /*текст в разделах: отступ*/
+    margin: 0px !important;
+    padding: 0px !important;
+ }
+.med-doc-print-wrap span { /*текст в разделах: размер шрифта*/
+    font-family: Arial !important;
+    font-size: 10pt !important;
+    line-height: 12pt !important;
+ }
+.med-doc-print-wrap  ol {/* списки */
+     list-style-type: decimal !important;
+     font-size: 12px !important;
+     line-height: 14px !important;
+     margin: 10px 15px !important;
+     padding: 0 !important;
+ }
+
+</code></pre>
+</section>
+
+<section id="tips">
+    <h2>Советы и Best Practices</h2>
+
+    <ul>
+        <li>Используйте <code>pt</code> вместо <code>px</code> для шрифтов, для отступов -&nbsp;<code>px</code> или&nbsp;<code>mm</code>, для таблиц -&nbsp;<code>px</code>или&nbsp;<code>%</code></li>
+        <li>Проверяйте документ в режиме предпросмотра печати.</li>
+        <li>Проверяйте документ не только в WYSYWIG-редакторе, но также&nbsp;в карточке пациента и&nbsp;печать из визита.</li>
+        <li>Если в документе используются фоны/заливки, не забывайте&nbsp;проверять, что в настройках печати включен фон</li>
+        <li>При копировании стилей&nbsp;не забывайте проверять корректность копирования и удалять все комментарии, кроме тех где указано обратное.</li>
+    </ul>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script><script>
+    document.querySelectorAll('.copy-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const code = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Скопировано!';
+                setTimeout(() => button.textContent = 'Копировать', 2000);
+            });
+        });
+    });
+</script>
