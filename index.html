@@ -447,13 +447,14 @@ ol li {
 </code></pre>
     <p>Иногда в колонтитулах используется картинка/логотип. Если использовать картинку сразу в стилях, то возникает сложность - до печати картинка еще не загружена, поэтому появится только при повторной отправке на печать. Поэтому необходимо картинку вставить в документ (желательно там, где она не будет мешать) и добавить ей свойство display: none.
  <pre>
-<button class="copy-btn">Копировать</button><code class="language-css">@page {
-      size: A4;
-      margin: 10mm 10mm 20mm 10mm; /* Увеличиваем нижнее поле до 30мм */
-      @bottom-left {
+<button class="copy-btn">Копировать</button><code class="language-css">
+@page {
+  size: A4;
+  margin: 10mm 10mm 20mm 10mm; /* Увеличиваем нижнее поле до 30мм */
+  @bottom-left {
       content: url("https://files.rnova.org/675b014b1db87d9f5454ccb2047a4b48.png");
-        margin-bottom: 5mm !important;
-      }
+      margin-bottom: 5mm !important;
+  }
 }
 @media print {
   .no-print {
@@ -537,6 +538,7 @@ ol li {
     });
 
 </script>
+
 
 
 
