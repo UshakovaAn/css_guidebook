@@ -94,6 +94,16 @@ nav a {
 <header><img alt="Логотип" src="https://demofiles.rnova.org/35236a263e7eab278fe8f1c9444cc1b2.png" />
     <h1>📘 Гайдбук по шаблонам и CSS</h1>
 </header>
+<div id="new-year-timer" style="
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  padding: 0.8rem 1.2rem;
+  background: #e8f2ff;
+  border-left: 5px solid #0057b7;
+  border-radius: 8px;
+">
+  Загрузка таймера…
+</div>
 
 <nav><a href="#intro">Введение</a> <a href="#global">Стандартный CSS</a> <a href="#components">Компоненты</a> <a href="#special">Спецэлементы</a> <a href="#print">Печать колонтитулов</a> <a href="#protocol">CSS протокола</a> <a href="#tips">Советы</a></nav>
 
@@ -537,6 +547,27 @@ ol li {
         });
     });
 
+</script>
+
+<script>
+  function updateCountdown() {
+    const now = new Date();
+    const year = now.getFullYear() + 1;
+    const target = new Date(`January 1, ${year} 00:00:00`);
+    const diff = target - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("new-year-timer").innerHTML =
+      `До Нового ${year} года осталось: <b>${days}</b> дн. 
+       <b>${hours}</b> ч. <b>${minutes}</b> мин. <b>${seconds}</b> сек.`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 
 
