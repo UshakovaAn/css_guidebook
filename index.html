@@ -90,9 +90,23 @@ nav a {
     text-decoration: none;
     color: #0057b7;
 }
+.timer {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
 </style>
 <header><img alt="Логотип" src="https://demofiles.rnova.org/35236a263e7eab278fe8f1c9444cc1b2.png" />
     <h1>📘 Гайдбук по шаблонам и CSS</h1>
+    <div class="timer" id="timer"></div>
 </header>
 <div id="new-year-timer" style="
   font-size: 1.3rem;
@@ -568,6 +582,27 @@ ol li {
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+</script>
+<script>
+    function startTimer(duration, display) {
+    let timer = duration;
+
+    setInterval(() => {
+        const minutes = String(Math.floor(timer / 60)).padStart(2, "0");
+        const seconds = String(timer % 60).padStart(2, "0");
+
+        display.textContent = `${minutes}:${seconds}`;
+
+        if (timer > 0) {
+            timer--;
+        }
+    }, 1000);
+}
+
+window.onload = () => {
+    const display = document.getElementById('timer');
+    startTimer(5 * 60, display); // 5 минут
+};
 </script>
 
 
