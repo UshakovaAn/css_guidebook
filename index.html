@@ -90,59 +90,120 @@ nav a {
     text-decoration: none;
     color: #0057b7;
 }
-.tree-wrapper {
-  animation: breathe 2.3s ease-in-out infinite;
+
+/* === Tic Tac Toe === */
+
+.ttt-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
 }
 
-.tree-svg .light {
-  fill: #ffd76b;
-  animation: glow 1.4s infinite alternate;
+.ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 10px;
 }
 
-.tree-svg .light:nth-child(5) { animation-delay: 0.2s; }
-.tree-svg .light:nth-child(6) { animation-delay: 0.4s; }
-.tree-svg .light:nth-child(7) { animation-delay: 0.7s; }
-.tree-svg .light:nth-child(8) { animation-delay: 1s; }
-
-@keyframes glow {
-  0% { opacity: .3; }
-  100% { opacity: 1; }
+.ttt-cell {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 14px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
+
+.ttt-cell.x::before,
+.ttt-cell.x::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 5px;
+    background: #0057b7;
+    border-radius: 3px;
+}
+
+.ttt-cell.x::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ttt-cell.x::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.ttt-cell.o::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    border: 5px solid #ff6a00;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ttt-cell.win {
+    background: #e6f7e6;
+}
+
+.ttt-score {
+    padding: 14px;
+    background: #f5f7fa;
+    border-radius: 14px;
+    min-width: 140px;
+}
+
+.ttt-score-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.ttt-score-item.x strong { color: #ff0000; }
+.ttt-score-item.o strong { color: #b3d3f8; }
+.ttt-score-item.draw strong { color: #666; }
+
+/* === Tic Tac Toe: кнопка === */
+
+#ttt-restart {
+    margin-top: 16px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #0057b7;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#ttt-restart:hover {
+    background: #00429a;
+    transform: translateY(-1px);
+}
+
+#ttt-restart:active {
+    transform: translateY(0);
+}
+
 
 @keyframes breathe {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
 }
 
 </style>
 <header><img alt="Логотип" src="https://demofiles.rnova.org/35236a263e7eab278fe8f1c9444cc1b2.png" />
     <h1>📘 Гайдбук по шаблонам и CSS</h1>
-    <div class="tree-wrapper">
-    <svg width="50" height="70" viewBox="0 0 70 100" class="tree-svg">
-      <polygon points="35,5 10,45 60,45" fill="#0a8f3a"/>
-      <polygon points="35,25 5,65 65,65" fill="#0a8f3a"/>
-      <polygon points="35,45 0,85 70,85" fill="#0a8f3a"/>
-      <rect x="28" y="85" width="14" height="15" fill="#8b5a2b"/>
-
-      <!-- "огоньки" -->
-      <circle cx="20" cy="55" r="3" class="light"/>
-      <circle cx="45" cy="35" r="3" class="light"/>
-      <circle cx="30" cy="15" r="3" class="light"/>
-      <circle cx="50" cy="70" r="3" class="light"/>
-    </svg>
-  </div>
 </header>
-<div id="new-year-timer" style="
-  font-size: 1.3rem;
-  margin: 1rem 0;
-  padding: 0.8rem 1.2rem;
-  background: #e8f2ff;
-  border-left: 5px solid #0057b7;
-  border-radius: 8px;
-">
-  Загрузка таймера…
-</div>
+
 
 <nav><a href="#intro">Введение</a> <a href="#global">Стандартный CSS</a> <a href="#components">Компоненты</a> <a href="#special">Спецэлементы</a> <a href="#print">Печать колонтитулов</a> <a href="#protocol">CSS протокола</a> <a href="#tips">Советы</a></nav>
 
@@ -495,7 +556,7 @@ ol li {
 }
 </code></pre>
     <p>Иногда в колонтитулах используется картинка/логотип. Если использовать картинку сразу в стилях, то возникает сложность - до печати картинка еще не загружена, поэтому появится только при повторной отправке на печать. Поэтому необходимо картинку вставить в документ (желательно там, где она не будет мешать) и добавить ей свойство display: none.
- <pre>
+    <pre>
 <button class="copy-btn">Копировать</button><code class="language-css">
 @page {
   size: A4;
@@ -575,6 +636,65 @@ ol li {
         <li>При копировании стилей&nbsp;не забывайте проверять корректность копирования и удалять все комментарии, кроме тех где указано обратное.</li>
     </ul>
 </section>
+
+
+
+<section class="tic-tac-toe">
+    <h3>Мини-игра: Крестики-нолики</h3>
+
+    <div class="ttt-controls">
+        <label>
+            <input type="radio" name="ttt-mode" value="pvp" checked>
+            Игрок vs Игрок
+        </label>
+        <label>
+            <input type="radio" name="ttt-mode" value="cpu">
+            Игрок vs Компьютер
+        </label>
+    </div>
+
+    <p id="ttt-status">Ходит: X</p>
+
+    <div class="ttt-wrapper">
+        <div class="ttt-board">
+            <div class="ttt-cell" data-index="0"></div>
+            <div class="ttt-cell" data-index="1"></div>
+            <div class="ttt-cell" data-index="2"></div>
+            <div class="ttt-cell" data-index="3"></div>
+            <div class="ttt-cell" data-index="4"></div>
+            <div class="ttt-cell" data-index="5"></div>
+            <div class="ttt-cell" data-index="6"></div>
+            <div class="ttt-cell" data-index="7"></div>
+            <div class="ttt-cell" data-index="8"></div>
+        </div>
+
+        <aside class="ttt-score">
+            <h4>Счёт</h4>
+
+            <div class="ttt-score-item x">
+                <span>X</span>
+                <strong id="ttt-score-x">0</strong>
+            </div>
+
+            <div class="ttt-score-item o">
+                <span>O</span>
+                <strong id="ttt-score-o">0</strong>
+            </div>
+
+            <div class="ttt-score-item draw">
+                <span>Ничья</span>
+                <strong id="ttt-score-draw">0</strong>
+            </div>
+        </aside>
+    </div>
+
+    <button id="ttt-restart">Новая игра</button>
+</section>
+
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script><script>
     document.querySelectorAll('.copy-btn').forEach(button => {
         button.addEventListener('click', () => {
@@ -588,36 +708,149 @@ ol li {
 
 </script>
 
+
+
+
 <script>
-  function updateCountdown() {
-    const now = new Date();
-    const year = now.getFullYear() + 1;
-    const target = new Date(`January 1, ${year} 00:00:00`);
-    const diff = target - now;
+    (() => {
+        const cells = document.querySelectorAll('.ttt-cell');
+        const status = document.getElementById('ttt-status');
+        const restartBtn = document.getElementById('ttt-restart');
+        const modeInputs = document.querySelectorAll('input[name="ttt-mode"]');
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+        const scoreXEl = document.getElementById('ttt-score-x');
+        const scoreOEl = document.getElementById('ttt-score-o');
+        const scoreDrawEl = document.getElementById('ttt-score-draw');
 
-    document.getElementById("new-year-timer").innerHTML =
-      `До Нового ${year} года осталось: <b>${days}</b> дн. 
-       <b>${hours}</b> ч. <b>${minutes}</b> мин. <b>${seconds}</b> сек.`;
-  }
+        let board = Array(9).fill(null);
+        let gameActive = true;
+        let mode = 'pvp';
+        let currentPlayer = 'X';
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+        let scoreX = 0, scoreO = 0, scoreDraw = 0;
+
+        const wins = [
+            [0,1,2],[3,4,5],[6,7,8],
+            [0,3,6],[1,4,7],[2,5,8],
+            [0,4,8],[2,4,6]
+        ];
+
+        // выбор режима
+        modeInputs.forEach(i =>
+            i.addEventListener('change', () => {
+                mode = i.value;
+                resetBoard();
+            })
+        );
+
+        // клики по клеткам
+        cells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                const i = +cell.dataset.index;
+                if (!gameActive || board[i]) return;
+
+                if (mode === 'pvp') {
+                    makeMove(i, currentPlayer);
+                    if (checkEnd()) return;
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    status.textContent = `Ходит: ${currentPlayer}`;
+                } else {
+                    makeMove(i, 'X');
+                    if (checkEnd()) return;
+                    setTimeout(cpuMove, 300);
+                }
+            });
+        });
+
+        // совершение хода
+        function makeMove(i, p) {
+            board[i] = p;
+            cells[i].classList.add(p === 'X' ? 'x' : 'o');
+        }
+
+        // ход компьютера (без наложений на X)
+        function cpuMove() {
+            if (!gameActive) return;
+
+            let moveIndex =
+                findWin('O') ??
+                findWin('X') ??
+                (board[4] === null ? 4 : null) ??
+                findFromList([0,2,6,8]) ??
+                findAnyEmpty();
+
+            if (moveIndex !== null && board[moveIndex] === null) {
+                makeMove(moveIndex, 'O');
+                checkEnd();
+            }
+        }
+
+        // поиск выигрышного хода
+        function findWin(player) {
+            for (const c of wins) {
+                const values = c.map(i => board[i]);
+                if (values.filter(v => v === player).length === 2 && values.includes(null)) {
+                    const idx = c[values.indexOf(null)];
+                    if (board[idx] === null) return idx;
+                }
+            }
+            return null;
+        }
+
+        // случайный ход из списка
+        function findFromList(list) {
+            const available = list.filter(i => board[i] === null);
+            return available.length ? available[Math.floor(Math.random() * available.length)] : null;
+        }
+
+        // любая пустая клетка
+        function findAnyEmpty() {
+            const empty = board.map((v,i)=>v===null?i:null).filter(v=>v!==null);
+            return empty.length ? empty[Math.floor(Math.random() * empty.length)] : null;
+        }
+
+        // проверка конца игры
+        function checkEnd() {
+            for (const c of wins) {
+                const [a,b,d] = c;
+                if (board[a] && board[a] === board[b] && board[a] === board[d]) {
+                    c.forEach(i => cells[i].classList.add('win'));
+                    if (board[a] === 'X') scoreX++;
+                    else scoreO++;
+                    updateScore();
+                    status.textContent = `Победа: ${board[a]}`;
+                    gameActive = false;
+                    return true;
+                }
+            }
+
+            if (!board.includes(null)) {
+                scoreDraw++;
+                updateScore();
+                status.textContent = 'Ничья';
+                gameActive = false;
+                return true;
+            }
+            return false;
+        }
+
+        function updateScore() {
+            scoreXEl.textContent = scoreX;
+            scoreOEl.textContent = scoreO;
+            scoreDrawEl.textContent = scoreDraw;
+        }
+
+        // сброс игры
+        function resetBoard() {
+            board.fill(null);
+            gameActive = true;
+            currentPlayer = 'X';
+            status.textContent = 'Ходит: X';
+            cells.forEach(c => c.className = 'ttt-cell');
+        }
+
+        restartBtn.addEventListener('click', resetBoard);
+    })();
+
+
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
